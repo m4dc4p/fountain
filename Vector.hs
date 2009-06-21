@@ -23,6 +23,12 @@ vector2 :: Float -> Float -> Vector2
 vector2 x y = V2 (x, y)
 
 vecX (V2 (x, y)) = x
-
 vecY (V2 (x, y)) = y
 
+normalize :: Vector2 -> Vector2
+normalize v@(V2 (x, y)) = V2 ((x / mag),(y / mag))
+    where
+      mag = magnitude v
+
+magnitude :: Vector2 -> Float
+magnitude (V2 (x, y)) = sqrt $ x**2 + y**2
