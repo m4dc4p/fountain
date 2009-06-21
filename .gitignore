@@ -1,0 +1,13 @@
+*~
+*.exe
+*.hi
+*.o
+*.manifest
+#*#
+*.zip
+dist
+*.log
+*.dvi
+*.ptb
+*.tmp.tex
+*.aux

@@ -1,0 +1,22 @@
+name: physics
+version: 0.1
+cabal-version: >= 1.2
+build-type: Simple
+
+library
+  build-depends: base >= 3 && < 4, random >= 1 && < 2
+  ghc-options: -O2
+  hs-source-dirs: .
+                                
+  exposed-modules: Fountain
+                   Particle
+                   Vector
+        
+executable Vis
+  main-is: Vis.hs
+  build-depends: chalkboard == 0.2, chalkboard-viewer == 0.1
+  
+  ghc-options: -O2
+  hs-source-dirs: .
+                                
+
