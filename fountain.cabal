@@ -1,11 +1,12 @@
-name: physics
+name: fountain
+description: A particle fountain simulation, very crude.
 version: 0.1
 cabal-version: >= 1.2
 build-type: Simple
 
 library
   build-depends: base >= 3 && < 4, random >= 1 && < 2
-  ghc-options: -O2
+  ghc-options: -O2 -funbox-strict-fields -optc-O2 -fvia-C -auto-all -prof
   hs-source-dirs: .
                                 
   exposed-modules: Fountain

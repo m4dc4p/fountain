@@ -8,9 +8,9 @@ import Control.Concurrent
 
 main = do
   (f:fs) <- run
-  let config = [WindowSize 400 200
+  let config = [WindowSize 800 600
                , WindowPos 10 10
-               , PixelSize 2
+               , PixelSize 10
                , FrameTarget 30]
       board frame =          
           let firework :: Particle -> Board Bool
@@ -22,10 +22,11 @@ main = do
                      straightline ((x, y), (v1, v2)) 0.05 `over`
                      arrowhead (v1, v2) angle 0.3
               visible c t = if t then alpha c else transparent black
-          in fmap unAlpha $ (fmap (visible red)
+              colors = cycle [red, white, blue]
+              fireworks = zip (map firework frame) colors
+          in fmap unAlpha $ (stack $ map (\(f, c) -> (fmap (visible c)
              $ scale 0.2
-             $ move (0, -0.5 / 0.2)
-             $ stack (map firework frame)) 
+             $ move (0, -0.5 / 0.2) f)) fireworks)
           `over`
              (fmap (visible white)
              $ move (0, -0.5)
