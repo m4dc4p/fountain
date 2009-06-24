@@ -42,7 +42,8 @@
 >                         then 0
 >                         else elapsed + dur
 >             takes n rs = Just (take n rs, drop n rs)
->             w' = take cnt $ vis ++ new
+>             -- Need to refactor this portion out?
+>             w' = simulate dur . take cnt $ vis ++ new
 >             visible (FP pos _ _) = vecY pos > -1
 >             newParticle [r1,r2,r3] = FP (vector2 0 0) 
 >                                         (vector2 (1 * r1) 
