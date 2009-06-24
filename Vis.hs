@@ -13,8 +13,8 @@ main = do
                , PixelSize 10
                , FrameTarget 30]
       board frame =          
-          let firework :: Particle -> Board Bool
-              firework (Particle p v _) = 
+          let firework :: FP -> Board Bool
+              firework (FP p v _) = 
                   let (x, y) = (V.vecX p, V.vecY p)
                       (v1, v2) = (V.vecX v + x, V.vecY v + y)
                       angle = angleOfLine ((x, y), (v1, v2))
