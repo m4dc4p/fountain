@@ -31,6 +31,16 @@ how much time has passed:
 > simulate :: Particle a => Duration -> World a -> World a
 > simulate dur world = map (step dur) world
 
+Many times we'll want to simulate the world and modify it on each frame. It would
+also be nice to keep some state too.
+
+> type WorldState s a = (s, World a)
+> simulateWith :: Particle a => (WorldState s a -> WorldState s a) -> s -> Duration -> [World a]
+> simulateWith f i dur = drop 1 . map snd . scanl next (i, []) $ repeat ()
+>     where
+>       next (s, w) _ = let (s', w') = f (s, w)
+>                       in (s', simulate dur w')
+
 Our @step@ function just updates one particle base on the force of
 gravity for the duration given:
 
@@ -60,4 +70,5 @@ damping factor to cover up numeric inaccuracies:
 >       damp = parDamping p
 >       p' = pos `vecAdd` dur `scale` vel
 >       v' = vel `vecAdd` (damp ** dur) `scale` (dur `scale` acc)
+
 
